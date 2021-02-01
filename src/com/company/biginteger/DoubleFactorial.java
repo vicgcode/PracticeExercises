@@ -1,4 +1,4 @@
-package com.company;
+package com.company.biginteger;
 
 import java.math.BigInteger;
 import java.util.Scanner;
@@ -10,7 +10,7 @@ import java.util.Scanner;
  * 7!!=7⋅5⋅3⋅1
  * 8!!=8⋅6⋅4⋅2
  *
- * The function argument can be any non-negative integer.
+ * The method calcDoubleFactorial() argument can be any non-negative integer.
  */
 
 class DoubleFactorial {
