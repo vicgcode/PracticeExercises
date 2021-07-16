@@ -6,59 +6,72 @@ import java.util.List;
 
 public class Speeds {
     public static void main(String[] args) {
-        int[] array = new int[1000000];
+        int[] array = new int[100000];
         List<Integer> arrayList = new ArrayList<>();
         List<Integer> linkedList = new LinkedList<>();
-        System.out.println("Fill an array");
-        fill(array);
-        System.out.println("Fill an ArrayList");
-        fill(arrayList);
-        System.out.println("Fill a LinkedList");
-        fill(linkedList);
-        System.out.println("Add in center of array");
-        add(array);
-        System.out.println("Add in center of ArrayList");
-        add(arrayList);
-        System.out.println("Add in center of LinkedList");
-        add(linkedList);
 
+        System.out.println("Measure the execution time of an array:");
+        measureTimeOfArray(array);
+        System.out.println("Measure the execution time of an ArrayList:");
+        measureTimeOfList(arrayList);
+        System.out.println("Measure the execution time of an LinkedList:");
+        measureTimeOfList(linkedList);
     }
 
-    public static void fill(List<Integer> list) {
+    public static void measureTimeOfArray(int[] array) {
+        System.out.println("Fill: " + fill(array));
+        System.out.println("Read elements: " + get(array));
+    }
+
+    public static void measureTimeOfList(List<Integer> list) {
+        System.out.println("Fill: " + fill(list));
+        System.out.println("Add to the beginning: " + addWithShift(list));
+        System.out.println("Read elements: " + get(list));
+    }
+
+    public static long fill(List<Integer> list) {
         long start = System.currentTimeMillis();
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 100000; i++) {
             list.add(i);
         }
         long finish = System.currentTimeMillis();
-        System.out.println("Done! Execution time: " + (finish - start));
+        return finish - start;
     }
 
-    public static void fill(int[] array) {
+    public static long fill(int[] array) {
         long start = System.currentTimeMillis();
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 100000; i++) {
             array[i] = i;
         }
         long finish = System.currentTimeMillis();
-        System.out.println("Done! Execution time: " + (finish - start));
+        return finish - start;
     }
 
 
-    public static void add(List<Integer> list) {
+    public static long addWithShift(List<Integer> list) {
         long start = System.currentTimeMillis();
-        for (int i = 500000; i < 1000000; i++) {
-            list.add(i + i);
+        for (int i = 0; i < 100000; i++) {
+            list.add(0, i);
         }
         long finish = System.currentTimeMillis();
-        System.out.println("Done! Execution time: " + (finish - start));
+        return finish - start;
     }
 
-    public static void add(int[] array) {
+    public static long get(List<Integer> list) {
         long start = System.currentTimeMillis();
-        for (int i = 500000; i < 1000000; i++) {
-            array[i] = i + i;
+        for (int i = 0; i < 100000; i++) {
+            list.get(i);
         }
         long finish = System.currentTimeMillis();
-        System.out.println("Done! Execution time: " + (finish - start));
+        return finish - start;
     }
 
+    public static long get(int[] array) {
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 100000; i++) {
+            int temp = array[i];
+        }
+        long finish = System.currentTimeMillis();
+        return finish - start;
+    }
 }
